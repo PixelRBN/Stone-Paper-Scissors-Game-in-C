@@ -18,7 +18,11 @@ int main()
 	while(restart==2)
 	{
 		FILE *fptr;
-			fptr = fopen("hscore.txt","r");
+			if ((fptr = fopen("hscore.txt","r")) == NULL) {
+                printf("Scores file was not found\n");
+                fptr = fopen("hscore.txt","w");
+                fprintf(fptr, "0");
+            }
 			fscanf(fptr,"%d", &highscr_txt);
 			fclose(fptr);
 		user_prev=highscr_txt;
